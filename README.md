@@ -21,10 +21,11 @@ This is a simple ADK-based agent that suggests a random city when asked. It demo
 │   └── tools/
 │       ├── function_tools.ts # ADK Tool wrappers
 │       └── tools.ts          # Core tool logic
-├── package.json          # Project scripts and dependencies
-├── tsconfig.json         # TypeScript configuration
+├── .nvmrc                # Node version configuration
 ├── .oxlintrc.json        # Linter configuration
-└── oxfmt.toml            # Formatter settings
+├── package.json          # Project scripts and dependencies
+├── pnpm-lock.yaml        # PNPM lockfile
+└── tsconfig.json         # TypeScript configuration
 ```
 
 ## Setup

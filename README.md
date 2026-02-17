@@ -1,68 +1,68 @@
-# 🤖 Workspace ADK TypeScript
+# Random City Agent (TypeScript)
 
-Welcome to the **Workspace ADK TypeScript**, a specialized development environment for building powerful, modular, and type-safe AI agents using Google's **Agent Development Kit (ADK)**.
+This is a simple ADK-based agent that suggests a random city when asked. It demonstrates how to use the Google Agent Development Kit (ADK) to build a specialized AI assistant.
 
-This repository is designed to streamline the development cycle of AI-driven applications, providing a robust foundation for orchestrating complex multi-agent systems.
+## Features
 
----
+- **City Explorer**: A friendly assistant that helps you discover new cities.
+- **Random City Tool**: A dedicated tool (`get_random_city`) to fetch randomized city data.
+- **Web Interface**: Integrated support for the ADK Web UI.
+- **Modern Tooling**: Built with TypeScript and includes linting/formatting via `oxlint` and `oxfmt`.
 
-## 🌟 Key Features
+## Project Structure
 
-- **Code-First Design**: Define agent logic, capabilities, and orchestration directly in TypeScript.
-- **Type Safety**: End-to-end type safety ensures reliable data contracts between agents and tools.
-- **Scalable Architecture**: Easily compose specialized agents into sophisticated workflows.
-- **Cloud Ready**: Optimized for deployment on Google Cloud (Vertex AI, Cloud Run) and other modern platforms.
-
-## 🛠️ Tech Stack
-
-- [**TypeScript**](https://www.typescriptlang.org/) - Robust development language.
-- [**Node.js**](https://nodejs.org/) - Execution runtime.
-- [**Google ADK**](https://github.com/google/adk-js) - The core framework for AI Agent development.
-
----
-
-## 📂 Project Structure
-
-```text
-.
-├── src/                # Agent core logic and handlers
-├── tools/              # Custom tool definitions and integrations
-├── config/             # Environment and agent configurations
-├── tests/              # Automated test suites
-└── README.md           # Project documentation
+```
+├── .husky/               # Git hooks
+├── random_city/
+│   ├── .env.example      # Environment variables template
+│   ├── agent.ts          # Agent definition (LlmAgent)
+│   ├── config.ts         # Configuration management
+│   ├── prompts.ts        # System instructions
+│   └── tools/
+│       ├── function_tools.ts # ADK Tool wrappers
+│       └── tools.ts          # Core tool logic
+├── package.json          # Project scripts and dependencies
+├── tsconfig.json         # TypeScript configuration
+├── .oxlintrc.json        # Linter configuration
+└── oxfmt.toml            # Formatter settings
 ```
 
-## 🚀 Getting Started
+## Setup
 
-### Prerequisites
-
-- Node.js (v18+)
-- npm / pnpm / yarn
-
-### Installation
-
-1. **Clone the repository**:
+1. **Install dependencies**:
 
    ```bash
-   git clone git@github.com:thecoder93/workspace-adk-typescript.git
-   cd workspace-adk-typescript
+   pnpm install
    ```
 
-2. **Install dependencies**:
+2. **Set up environment variables**:
+   Copy the example environment file and fill in your `GOOGLE_API_KEY`:
 
    ```bash
-   npm install
+   cp random_city/.env.example random_city/.env
+   # Then edit random_city/.env with your key
    ```
 
-3. **Configure Environment**:
-   Create a `.env` file based on the environment requirements.
+## Running the Agent
 
----
+### 1. Web Interface (Recommended)
 
-## 🤝 Contributing
+Launch the agent with a browser-based chat interface:
 
-Contributions are welcome! Please feel free to submit a Pull Request or open an Issue for any improvements.
+```bash
+npm start
+```
 
----
+### 2. Command Line Interface
 
-_Built with passion for the AI developer community._
+Run the agent directly in your terminal:
+
+```bash
+npx adk run random_city/agent.ts
+```
+
+## Development
+
+- **Linting**: `npm run lint` (uses `oxlint` for high-performance linting)
+- **Formatting**: `npm run fmt` (uses `oxfmt` for lightning-fast formatting)
+- **Git Hooks**: Pre-commit hooks are configured via Husky to ensure code quality.

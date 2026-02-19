@@ -12,7 +12,7 @@ const GOOGLE_API_KEY = getEnv("GOOGLE_API_KEY", "");
 
 export const configCritic = {
   agentSettings: {
-    name: "reflection_critic_agent",
+    name: "reflection_author_agent",
     description: "Generates a draft text.",
     model: "gemini-2.5-flash",
   },
@@ -21,7 +21,7 @@ export const configCritic = {
 
 export const configProducer = {
   agentSettings: {
-    name: "reflection_producer_agent",
+    name: "reflection_reviewer_agent",
     description: "Reviews a draft text for factual accuracy.",
     model: "gemini-2.5-flash",
   },

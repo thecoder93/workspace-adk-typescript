@@ -1,7 +1,3 @@
-/**
- * Prompts for the Random City Agent.
- */
-
 export const INSTRUCTION_GENERATOR_CRITIC = `
 Write a short, informative paragraph about the user's subject.
 `;

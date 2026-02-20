@@ -1,25 +1,12 @@
-import { LlmAgent } from "@google/adk";
-import { configCritic, configProducer } from "./config";
-import { INSTRUCTION_GENERATOR_CRITIC, INSTRUCTION_PRODUCER_REVIEWER } from "./prompts";
-import { exitLoopTool } from "./tools/function_tools";
+import { SequentialAgent } from "@google/adk";
+import { refinementLoop } from "./sub-agents/refinement/agent";
+import { initialWriterAgent } from "./sub-agents/writer/agent";
 
-const DRAFT_TEXT = "draft_text";
-const REVIEW_OUTPUT = "review_output";
+export const STATE_CURRENT_DOC = "current_document";
 
-export const generatorCriticAgent = new LlmAgent({
-  model: configCritic.agentSettings.model,
-  name: configCritic.agentSettings.name,
-  description: configCritic.agentSettings.description,
-  instruction: INSTRUCTION_GENERATOR_CRITIC,
-  outputKey: DRAFT_TEXT,
-  tools: [exitLoopTool],
-});
-
-export const producerReviewerAgent = new LlmAgent({
-  model: configProducer.agentSettings.model,
-  name: configProducer.agentSettings.name,
-  description: configProducer.agentSettings.description,
-  instruction: INSTRUCTION_PRODUCER_REVIEWER,
-  outputKey: REVIEW_OUTPUT,
-  tools: [exitLoopTool],
+export const rootAgent = new SequentialAgent({
+  name: "IterativeWritingPipeline",
+  subAgents: [initialWriterAgent, refinementLoop],
+  description:
+    "Writes an initial document and then iteratively refines it with critique using an exit tool.",
 });

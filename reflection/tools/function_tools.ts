@@ -1,22 +1,11 @@
-import { FunctionTool, LoopAgent, SequentialAgent } from "@google/adk";
-import { generatorCriticAgent, producerReviewerAgent } from "../agents";
+import { FunctionTool } from "@google/adk";
 import { exitLoop } from "./tools";
+import z from "zod";
 
 export const exitLoopTool = new FunctionTool({
   name: "exit_loop",
   description:
     "Call this function ONLY when the critique indicates no further changes are needed, signaling the iterative process should end.",
-  parameters: {},
+  parameters: z.object({}),
   execute: exitLoop,
-});
-
-export const refinementLoop = new LoopAgent({
-  name: "RefinementLoop",
-  subAgents: [generatorCriticAgent, producerReviewerAgent],
-  maxIterations: 5,
-});
-
-export const rootAgent = new SequentialAgent({
-  name: "IterativeWritingPipeline",
-  subAgents: [generatorCriticAgent, refinementLoop],
 });

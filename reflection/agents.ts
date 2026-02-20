@@ -1,9 +1,12 @@
-import { LlmAgent } from "@google/adk";
-import { iterativeWritingPipeline } from "./tools/function_tools";
+import { SequentialAgent } from "@google/adk";
+import { refinementLoop } from "./sub-agents/refinement/agent";
+import { initialWriterAgent } from "./sub-agents/writer/agent";
 
-export const rootAgent = new LlmAgent({
-  model: "gemini-2.5-flash",
-  name: "reflaction_agent",
-  instruction: "You MUST call IterativeWritingPipeline.",
-  subAgents: [iterativeWritingPipeline],
+export const STATE_CURRENT_DOC = "current_document";
+
+export const rootAgent = new SequentialAgent({
+  name: "IterativeWritingPipeline",
+  subAgents: [initialWriterAgent, refinementLoop],
+  description:
+    "Writes an initial document and then iteratively refines it with critique using an exit tool.",
 });

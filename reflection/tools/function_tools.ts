@@ -2,7 +2,7 @@ import { FunctionTool, LlmAgent, LoopAgent, SequentialAgent } from "@google/adk"
 import { exitLoop } from "./tools";
 import { configCritic, configProducer } from "../config";
 import { INSTRUCTION_GENERATOR_CRITIC, INSTRUCTION_PRODUCER_REVIEWER } from "../prompts";
-import { Schema, Type } from "@google/genai";
+import { Type } from "@google/genai";
 
 const DRAFT_TEXT = "draft_text";
 const REVIEW_OUTPUT = "review_output";

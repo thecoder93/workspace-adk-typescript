@@ -3,12 +3,16 @@
   "version": "0.0.0",
   "description": "A simple ADK agent that suggests a random city.",
   "scripts": {
-    "start": "cd random_city && npx adk web",
+    "start": "cd reflection && npx adk web",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "prepare": "husky"
+  },
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@google/adk": "^0.3.0",
